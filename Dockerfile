@@ -39,11 +39,13 @@ RUN apt-get -yy install xfce4-artwork xfce4-mixer xfce4-radio-plugin xfce4-volum
     gstreamer0.10-pulseaudio gnome-mplayer vlc vlc-plugin-pulse pulseaudio-equalizer audacious \
     audacious-plugins gnome-icon-theme-full && \
     rm -rf /var/cache/apk/*
-RUN sed -i -e 's/\/usr\/bin\/openbox-session/\/usr\/bin\/xfce4-session/' /etc/service/openbox/run
-RUN rm -rf /etc/service/xclipboard/
+# Make sure there is no cpu waisting screensaver
+RUN apt-get -yy purge xscreensaver
+RUN sed -i -e 's/\/usr\/bin\/openbox-session/dbus-launch \/usr\/bin\/xfce4-session/' /etc/service/openbox/run
+RUN rm -rf /etc/service/xclipboard/run
+
 WORKDIR /nobody
-# Copy X app start script to right location
-COPY startapp.sh /startapp.sh
+
 
 #########################################
 ##         EXPORTS AND VOLUMES         ##
