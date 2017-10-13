@@ -11,11 +11,11 @@ ENV USER_ID=99
 ENV GROUP_ID=100
 
 # Gui App Name default is "GUI_APPLICATION"
-ENV APP_NAME FIREFOX
+ENV APP_NAME XFCE4
 
 # Default resolution, change if you like
-ENV WIDTH=1280
-ENV HEIGHT=720
+ENV WIDTH=1920
+ENV HEIGHT=1080
 
 # Use baseimage-docker's init system
 CMD ["/sbin/my_init"]
